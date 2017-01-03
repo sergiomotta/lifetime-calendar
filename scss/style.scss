@@ -1,0 +1,50 @@
+h1, h3{
+    font-variant: small-caps;
+    text-align: center;
+}
+.row{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+    clear: both;
+}
+#lifetime{ 
+    .diagram{ 
+        text-align: center;
+        .months, .weeks{
+            height: 22px;
+            width: 16px;
+            display: inline-block;
+            margin: 2.5px;
+            text-align: center;
+            font-weight: bold;
+            &:first-of-type{
+                margin-left: 36px;
+            }
+        }
+        span{
+            border: 2px solid #333;
+            border-radius: 100%;
+            text-indent: -9999px;
+            white-space: nowrap; 
+            height: 16px;
+            width: 16px;
+            display: inline-block;
+            margin: 2.5px;
+            vertical-align: middle;
+            &.lived{
+                animation: lived 2s ease-out forwards;
+            }
+        }
+        .n{
+            font-weight: bold;
+            width: 30px;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+}
+
+@keyframes lived {
+    100% {background-color: #999;}
+}

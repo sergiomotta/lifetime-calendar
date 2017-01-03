@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/style.min.css">
+<script src="js/scripts.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl" class="container">
+
+<h1>Calendar of a Lifetime</h1>
+<h3>Put your date of birth</h3>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form name="myForm">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                   <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="date" ng-model="DateOfBirth" class="form-control" required />
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" id="see" ng-disabled="myForm.$invalid">See!</button>
+                    </span>
+                </div>    
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--
+<p>Date Of Birth: {{DateOfBirth | date:"MM/dd/yyyy"}}</p>
+<p>Current date: {{date | date:'MM/dd/yyyy'}}</p>
+<h2>Lived weeks: <span class="result">{{ diffDate(date1, date2) }}</span> </h2>
+<h2>Lived months: <span class="result">{{ diffDatePerMonth(date1, date2) }}</span> </h2>
+-->
+
+
+<section id="lifetime" class="row">
+    <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+      <li role="presentation" class="active"><a data-toggle="tab" href="#months">90 yrs in months</a></li>
+      <li role="presentation"><a data-toggle="tab" href="#weeks">90 yrs in weeks</a></li>
+    </ul>
+    <div class="tab-content">
+        <article role="tabpanel" class="tab-pane fade in active" id="months">
+            <h2>You already lived <span class="result">{{ diffDatePerMonth(date1, date2) }}</span> months.</h2>
+            <section class="diagram">
+                <div>
+                    <label ng-repeat="(mIndex, y) in getNumber(months) track by mIndex" class="months">{{mIndex + 1}}</label>
+                </div>
+               <div ng-repeat="(ymIndex, y) in getNumber(yrsMths) track by ymIndex" class="yr{{yIndex}}">
+                    <label class="n">{{ymIndex * 3}}</label>
+                    <span ng-repeat="(mIndex, y) in getNumber(months) track by mIndex" ng-class="((ymIndex*36)+(mIndex+1) <= diffDatePerMonth(date1, date2)) ? 'lived' : ''">{{mIndex+1}}</span>
+                </div>
+            </section>    
+        </article>
+        <article role="tabpanel" class="tab-pane fade" id="weeks">
+            <h2>You already lived <span class="result">{{ diffDate(date1, date2) }}</span> weeks.</h2>
+            <section class="diagram">
+               <div>
+                    <label ng-repeat="(wIndex, y) in getNumber(weeks) track by wIndex" class="weeks">{{wIndex + 1}}</label>
+               </div>
+               <div ng-repeat="(yIndex, y) in getNumber(yrs) track by yIndex" class="yr{{yIndex}}"><label class="n">{{yIndex}}</label>
+                <span ng-repeat="(wIndex, y) in getNumber(weeks) track by wIndex" ng-class="((yIndex*52)+(wIndex+1) <= diffDate(date1, date2)) ? 'lived' : ''">{{$index+1}}</span>
+                </div>
+            </section>    
+        </article>
+    </div>
+</section>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.DateOfBirth = (new Date('dd/mm/yyyy'));
+    $scope.date = (new Date());
+    
+    $scope.diffDate = function(dateOut1, dateOut2){
+          var dateOut1 =  $scope.DateOfBirth; // it will work if date1 is in ISO format
+           var dateOut2 = $scope.date;
+
+          var timeDiff = Math.abs(dateOut1.getTime() - dateOut2.getTime());
+          var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+          var livedWeeks = parseInt(diffDays / 7);
+          return parseInt(livedWeeks - livedWeeks/364);
+    };
+    
+    $scope.diffDatePerMonth = function(dateOut1, dateOut2){
+          var dateOut1 =  $scope.DateOfBirth; // it will work if date1 is in ISO format
+           var dateOut2 = $scope.date;
+
+          var timeDiff = Math.abs(dateOut1.getTime() - dateOut2.getTime());
+          var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+          var livedMonths = parseInt(diffDays / 30.41);
+          return livedMonths;
+    };
+
+    $scope.yrs = 90;
+    $scope.yrsMths = 30;
+    $scope.weeks = 52;
+    $scope.months = 36;
+    $scope.getNumber = function(num) {
+        return new Array(num);   
+    }
+
+});
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+h1, h3 {
+  font-variant: small-caps;
+  text-align: center; }
+
+.row {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: block;
+  clear: both; }
+
+#lifetime .diagram {
+  text-align: center; }
+  #lifetime .diagram .months, #lifetime .diagram .weeks {
+    height: 22px;
+    width: 16px;
+    display: inline-block;
+    margin: 2.5px;
+    text-align: center;
+    font-weight: bold; }
+    #lifetime .diagram .months:first-of-type, #lifetime .diagram .weeks:first-of-type {
+      margin-left: 36px; }
+  #lifetime .diagram span {
+    border: 2px solid #333;
+    border-radius: 100%;
+    text-indent: -9999px;
+    white-space: nowrap;
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    margin: 2.5px;
+    vertical-align: middle; }
+    #lifetime .diagram span.lived {
+      -webkit-animation: lived 2s ease-out forwards;
+              animation: lived 2s ease-out forwards; }
+  #lifetime .diagram .n {
+    font-weight: bold;
+    width: 30px;
+    display: inline-block;
+    text-align: center; }
+
+@-webkit-keyframes lived {
+  100% {
+    background-color: #999; } }
+
+@keyframes lived {
+  100% {
+    background-color: #999; } }

@@ -67,9 +67,8 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).tab('show');
     });
-    $('#lifetime').hide();
     $('#see').click(function(e){
         e.preventDefault();
-        $('#lifetime').show();
+        $('#lifetime').show(500);
     }); 
 });

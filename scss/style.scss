@@ -10,6 +10,11 @@ h1, h3{
 }
 #lifetime{ 
     display: none;
+    @media screen and(max-width: 1024px){
+        position: absolute;
+        width: 90%;
+        left: 5%;
+    }
     .diagram{ 
         text-align: center;
         .months, .weeks{
@@ -21,6 +26,14 @@ h1, h3{
             font-weight: bold;
             &:first-of-type{
                 margin-left: 36px;
+            }
+            @media screen and(max-width: 1024px){
+                width: 12px;
+                margin: 2px;
+                font-size: 12px;
+                &:first-of-type{
+                    margin-left: 32px;
+                }
             }
         }
         span{
@@ -35,6 +48,11 @@ h1, h3{
             vertical-align: middle;
             &.lived{
                 animation: lived 2s ease-out forwards;
+            }
+            @media screen and(max-width: 1024px){
+                width: 12px;
+                height: 12px;
+                margin: 2px;
             }
         }
         .n{

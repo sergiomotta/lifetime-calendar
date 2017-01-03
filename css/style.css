@@ -10,6 +10,11 @@ h1, h3 {
 
 #lifetime {
   display: none; }
+  @media screen and (max-width: 1024px) {
+    #lifetime {
+      position: absolute;
+      width: 90%;
+      left: 5%; } }
   #lifetime .diagram {
     text-align: center; }
     #lifetime .diagram .months, #lifetime .diagram .weeks {
@@ -21,6 +26,13 @@ h1, h3 {
       font-weight: bold; }
       #lifetime .diagram .months:first-of-type, #lifetime .diagram .weeks:first-of-type {
         margin-left: 36px; }
+      @media screen and (max-width: 1024px) {
+        #lifetime .diagram .months, #lifetime .diagram .weeks {
+          width: 12px;
+          margin: 2px;
+          font-size: 12px; }
+          #lifetime .diagram .months:first-of-type, #lifetime .diagram .weeks:first-of-type {
+            margin-left: 32px; } }
     #lifetime .diagram span {
       border: 2px solid #333;
       border-radius: 100%;
@@ -34,6 +46,11 @@ h1, h3 {
       #lifetime .diagram span.lived {
         -webkit-animation: lived 2s ease-out forwards;
                 animation: lived 2s ease-out forwards; }
+      @media screen and (max-width: 1024px) {
+        #lifetime .diagram span {
+          width: 12px;
+          height: 12px;
+          margin: 2px; } }
     #lifetime .diagram .n {
       font-weight: bold;
       width: 30px;

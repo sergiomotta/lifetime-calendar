@@ -22,6 +22,6 @@ $(document).ready(function(){
     });
     $('#see').click(function(e){
         e.preventDefault();
-        $('#lifetime').show(500);
+        $('#lifetime').fadeIn(500);
     }); 
 });
